@@ -1,9 +1,11 @@
+import 'dotenv/config'
 import express from "express";
 import http from "http";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors"; 
+import mongoose from 'mongoose';
 
 const app = express();
 
@@ -21,3 +23,12 @@ const server = http.createServer(app);
 server.listen(8080, () => {
     console.log("Server listening at localhost:8080");
 });
+
+// Using environment variables for Password
+const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD;
+const MONGO_URL = "mongodb+srv://jacegonzales25:" + MONGODB_PASSWORD + "@back-endapi.flsxrcr.mongodb.net/?retryWrites=true&w=majority";
+console.log(MONGO_URL);
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGO_URL);
+mongoose.connection.on("error", (error: Error) => {console.log(error)});
