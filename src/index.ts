@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors'; 
 import mongoose from 'mongoose';
+import router from './router';
 
 const app = express();
 
@@ -32,3 +33,6 @@ console.log(MONGO_URL);
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on('error', (error: Error) => {console.log(error)});
+
+// Adding the path to the router in router folder. This loads the middleware of index.ts in router folder.
+app.use('/', router());
