@@ -17,7 +17,7 @@ app.use(cors({
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
-console.log("Hello Typescript!");
+
 
 const server = http.createServer(app);
 
